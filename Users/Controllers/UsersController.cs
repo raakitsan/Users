@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Users.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+// For more information on enabling Web API for empty projects,
+// visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Users.Controllers
 {
@@ -8,29 +10,31 @@ namespace Users.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        public static List<User> Users = new List<User>();
+
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Users;
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            return null;
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] User value)
         {
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] User value)
         {
         }
 

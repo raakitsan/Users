@@ -30,7 +30,7 @@ namespace Users.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] User value)
+        public void Post([FromBody] User user)
         {
         }
 

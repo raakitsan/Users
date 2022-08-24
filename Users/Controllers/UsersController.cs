@@ -30,8 +30,16 @@ namespace Users.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] User user)
+        public IActionResult Post([FromBody] User user)
         {
+            user.Id = 1;
+            user.DateAdded = DateTime.UtcNow;
+            Users.Add(user);
+
+            var result = new { Id = user.Id, Password = "pass" };
+
+            // Look at the "Location" header in the response output in Postman
+            return CreatedAtAction(nameof(Get), new { id = user.Id }, result);
         }
 
         // PUT api/<UsersController>/5

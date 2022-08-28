@@ -32,13 +32,11 @@ namespace Users.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] User user)
         {
-            user.Id = 1;
             user.DateAdded = DateTime.UtcNow;
             Users.Add(user);
 
-            var result = new { Id = user.Id, Password = "pass" };
+            var result = new { Id = user.Id, Email = user.Email, Password = user.Password, DateAdded = user.DateAdded };
 
-            // Look at the "Location" header in the response output in Postman
             return CreatedAtAction(nameof(Get), new { id = user.Id }, result);
         }
 

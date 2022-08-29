@@ -11,45 +11,85 @@ namespace Users.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        public static List<User> Users = new List<User>();
+        public static List<User> users = new List<User>();
+        private static int CurrentId = 100;
 
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<User> GetAll()
         {
-            return Users;
-            //return new string[] { "value1", "value2" }
+            return users;
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public User Get(int id)
+        public IActionResult GetSpecific(int id)
         {
-            return null;
+            var user = users.FirstOrDefault(t => t.Id == id);
+
+            if (user == null)
+            {
+                return NotFound(null);
+            }
+
+            return Ok(user);
         }
 
         // POST api/<UsersController>
         [HttpPost]
         public IActionResult Post([FromBody] User user)
         {
+            user.Id = CurrentId++;
             user.DateAdded = DateTime.UtcNow;
-            Users.Add(user);
+            users.Add(user);
+            
+            if (string.IsNullOrEmpty(user.Email))
+            {
+                return BadRequest("Null or Empty Email field");
+            }
+            if (string.IsNullOrEmpty(user.Password))
+            {
+                return BadRequest("Null or Empty Password field");
+            }
 
-            var result = new { Id = user.Id, Email = user.Email, Password = user.Password, DateAdded = user.DateAdded };
+            //var result = new { Id = user.Id, Email = user.Email, Password = user.Password, DateAdded = user.DateAdded };
 
-            return CreatedAtAction(nameof(Get), new { id = user.Id }, result);
+            return CreatedAtAction(nameof(GetSpecific), new { id = user.Id }, user);
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] User value)
+        public IActionResult Put(int id, [FromBody] User value)
         {
+            if (string.IsNullOrEmpty(value.Email))
+            {
+                return BadRequest("Null or Empty Email field");
+            }
+            if (string.IsNullOrEmpty(value.Password))
+            {
+                return BadRequest("Null or Empty Password field");
+            }
+
+            var user = users.FirstOrDefault(t => t.Id == id);
+            if (user != null)
+            {
+                user.Email = value.Email;
+                user.Password = value.Password;
+                return Ok(user);
+            }
+            return NotFound();
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var rowsDeleted = users.RemoveAll(x => x.Id == id);
+            if (rowsDeleted == 0)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
     }
 }

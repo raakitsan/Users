@@ -1,0 +1,12 @@
+{
+    "Email":"pete.h@gmail.com", "Password":"pass"
+}
+{
+    "Email":"joe.h@gmail.com", "Password":"pass1"
+}
+{
+    "Email":"rob.t@gmail.com", "Password":"pass2"
+}
+{
+    "Email":"ted.m@gmail.com", "Password":"pass3"
+}

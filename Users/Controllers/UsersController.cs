@@ -36,7 +36,8 @@ namespace Users.Controllers
             user.DateAdded = DateTime.UtcNow;
             Users.Add(user);
 
-            var result = new { Id = user.Id, Password = "pass" };
+            //var result = new { Id = user.Id, Password = "pass" };
+            var result = user;
 
             // Look at the "Location" header in the response output in Postman
             return CreatedAtAction(nameof(Get), new { id = user.Id }, result);

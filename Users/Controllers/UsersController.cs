@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Users.Models;
 using System;
+using HelloWorldService;
 
 // For more information on enabling Web API for empty projects,
 // visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Users.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsersController : ControllerBase
+  [Route("api/[controller]")]
+  [ApiController]
+  [Authenticator]
+  public class UsersController : ControllerBase
     {
         public static List<User> users = new List<User>();
         private static int CurrentId = 100;

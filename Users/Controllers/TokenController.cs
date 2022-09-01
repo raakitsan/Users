@@ -21,10 +21,10 @@ namespace HelloWorldService.Controllers
     }
 
     // This should require SSL
-    [HttpGet]
-    public dynamic Get(string email, string password)
+    [HttpGet("{Email}/{Password}")]
+    public dynamic Get(string Email, string Password)
     {
-      var token = TokenHelper.GetToken(email, password);
+      var token = TokenHelper.GetToken(Email, Password);
       return new { Token = token };
     }
   }

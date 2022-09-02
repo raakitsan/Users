@@ -10,7 +10,7 @@ namespace Users.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  [Authenticator]
+
   public class UsersController : ControllerBase
     {
         public static List<User> users = new List<User>();

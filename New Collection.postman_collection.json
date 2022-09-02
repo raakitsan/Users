@@ -174,6 +174,81 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:5215/api/Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\":\"pete.j@gmail.com\", \"Password\":\"pass1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5215/api/Token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5215",
+					"path": [
+						"api",
+						"Token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5215/api/Token/{Email}/{Password}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5215/api/Token/pete.h@gmail.com/pass",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5215",
+					"path": [
+						"api",
+						"Token",
+						"pete.h@gmail.com",
+						"pass"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
